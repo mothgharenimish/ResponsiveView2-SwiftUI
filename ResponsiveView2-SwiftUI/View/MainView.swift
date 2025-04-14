@@ -11,7 +11,7 @@ struct MainView: View {
     var prop : Properties
     @Binding var showMenu: Bool
     @Binding var currentMenu: String
-    var data : [Int] = Array(1...40)
+    var data : [Int] = Array(1...100)
     var colors : [Color] = [.red,.yellow,.blue,.indigo,.orange,.green]
     
     private var iphonepottraitColumns: [GridItem] {
