@@ -12,9 +12,10 @@ struct SideBar: View {
     var prop: Properties
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 20) {
-                
+        if !prop.isLandscape && !prop.isiPadPortrait{
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 20) {
+                    
                     Image("Juliaann")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -26,23 +27,59 @@ struct SideBar: View {
                         .font(.title3)
                         .fontWeight(.bold)
                     
-                 
                     
-                SideBarButton(icon: "tray.and.arrow.up.fill", title: "Inbox")
-                    .padding(.top,10)
-                SideBarButton(icon: "figure.baseball", title: "Sent")
-                SideBarButton(icon: "eraser.fill", title: "Draft")
-                SideBarButton(icon: "delete.backward.fill", title: "Deleted")
-                SideBarButton(icon: "person.crop.circle.fill.badge.checkmark", title: "Account")
+                    
+                    SideBarButton(icon: "tray.and.arrow.up.fill", title: "Inbox")
+                        .padding(.top,10)
+                    SideBarButton(icon: "figure.baseball", title: "Sent")
+                    SideBarButton(icon: "eraser.fill", title: "Draft")
+                    SideBarButton(icon: "delete.backward.fill", title: "Deleted")
+                    SideBarButton(icon: "person.crop.circle.fill.badge.checkmark", title: "Account")
+                }
+                .padding()
+                .padding(.top)
             }
-            .padding()
-            .padding(.top)
+            .padding(.leading, 10)
+            .frame(width: prop.size.width / 2 > 300 ? 300 : prop.size.width / 2)
+            
+            .background(Color("brown"))
+            .ignoresSafeArea()
         }
-        .padding(.leading, 10)
-        .frame(width: prop.size.width / 2 > 300 ? 300 : prop.size.width / 2)
-
-        .background(Color("brown"))
-        .ignoresSafeArea()
+        
+        if prop.isLandscape {
+            
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 20) {
+                    
+                    Image("Juliaann")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 90,height: 90)
+                        .clipShape(Circle())
+                        .padding(.top,40)
+                    
+                    Text("Julia Ann")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                    
+                    
+                    
+                    SideBarButton(icon: "tray.and.arrow.up.fill", title: "Inbox")
+                        .padding(.top,10)
+                    SideBarButton(icon: "figure.baseball", title: "Sent")
+                    SideBarButton(icon: "eraser.fill", title: "Draft")
+                    SideBarButton(icon: "delete.backward.fill", title: "Deleted")
+                    SideBarButton(icon: "person.crop.circle.fill.badge.checkmark", title: "Account")
+                }
+                .padding()
+                .padding(.top)
+            }
+            .padding(.leading, 10)
+            .frame(width: prop.size.width / 2 > 300 ? 220 : prop.size.width / 2)
+            
+            .background(Color("brown"))
+            .ignoresSafeArea()
+        }
         
     }
     

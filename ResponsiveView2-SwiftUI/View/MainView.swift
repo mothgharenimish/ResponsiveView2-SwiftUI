@@ -11,6 +11,7 @@ struct MainView: View {
     var prop : Properties
     @Binding var showMenu: Bool
     @Binding var currentMenu: String
+    
     var data : [Int] = Array(1...100)
     var colors : [Color] = [.red,.yellow,.blue,.indigo,.orange,.green]
     
@@ -32,7 +33,7 @@ struct MainView: View {
         let columnCount = Int(prop.size.width / 300)
         return Array(repeating: GridItem(.flexible()), count: max(4, min(columnCount, 4)))
     }
-
+    
     
     var body: some View {
         
@@ -40,12 +41,13 @@ struct MainView: View {
             
             if prop.isLandscape && !prop.isiPadLandscape{
                 HStack {
-                 
+                    
                     Image("Juliaann")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 130, height: 130)
                         .clipShape(Circle())
+                    
                     Spacer()
                     
                     VStack(alignment: .leading, spacing: 5) {
@@ -78,7 +80,7 @@ struct MainView: View {
             }
             
             
-         else if !prop.isLandscape && !prop.isiPadPortrait{
+            else if !prop.isLandscape && !prop.isiPadPortrait{
                 HStack {
                     
                     Image("Juliaann")
@@ -86,6 +88,11 @@ struct MainView: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 140, height: 140)
                         .clipShape(Circle())
+                        .onTapGesture {
+                            withAnimation {
+                                showMenu.toggle()
+                            }
+                        }
                     Spacer()
                     
                     VStack(alignment: .leading, spacing: 5) {
@@ -117,14 +124,19 @@ struct MainView: View {
                 .background(.yellow)
             }
             
-        else if prop.isiPadPortrait{
+            else if prop.isiPadPortrait{
                 HStack {
                     
                     Image("Juliaann")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 140, height: 140)
-                        .clipShape(Circle())                    
+                        .clipShape(Circle())
+                        .onTapGesture {
+                            withAnimation {
+                                showMenu.toggle()
+                            }
+                        }
                     VStack(alignment: .leading, spacing: 5) {
                         
                         Text("Julia Ann")
@@ -172,57 +184,55 @@ struct MainView: View {
             }
             
             
-          else if prop.isiPadLandscape {
+            else if prop.isiPadLandscape {
                 
-              HStack {
-                  
-                  Image("Juliaann")
-                      .resizable()
-                      .aspectRatio(contentMode: .fill)
-                      .frame(width: 140, height: 140)
-                      .clipShape(Circle())
-                  VStack(alignment: .leading, spacing: 5) {
-                      
-                      Text("Julia Ann")
-                          .font(.title)
-                          .fontWeight(.bold)
-                      
-                      Text("Contact No: 9284175645")
-                          .font(.title2)
-                          .fontWeight(.semibold)
-                      
-                      
-                      Text("Location: Nagpur India")
-                          .font(.title2)
-                          .fontWeight(.semibold)
-                      
-                      Text("Hobbies: Playing Cricket, Acting")
-                          .font(.title2)
-                          .fontWeight(.semibold)
-                      
-                      
-                      
-                      
-                      
-                  }
-                  
-                  Spacer()
-                  
-                  VStack(alignment: .leading, spacing: 5) {
-                      
-                      Text("Follow me")
-                          .font(.title3)
-                          .fontWeight(.semibold)
-                      
-                      Folloeme(socialmediaImg: "icons8-fb-48", socialmediaweb:"juliaann/fb")
-                      
-                      Folloeme(socialmediaImg: "icons8-instagram-48", socialmediaweb:"juliaann/instagram")
-                      
-                      Folloeme(socialmediaImg: "icons8-twitter-48", socialmediaweb:"juliaann/twitter")
-                  }
-              }
-              .padding(.horizontal,10)
-              .background(.yellow)
+                HStack {
+                    
+                    Image("Juliaann")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 140, height: 140)
+                        .clipShape(Circle())
+                    VStack(alignment: .leading, spacing: 5) {
+                        
+                        Text("Julia Ann")
+                            .font(.title)
+                            .fontWeight(.bold)
+                        
+                        Text("Contact No: 9284175645")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        
+                        
+                        Text("Location: Nagpur India")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        
+                        Text("Hobbies: Playing Cricket, Acting")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .padding(.bottom,4)
+                        
+                        
+                    }
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .leading, spacing: 5) {
+                        
+                        Text("Follow me")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                        
+                        Folloeme(socialmediaImg: "icons8-fb-48", socialmediaweb:"juliaann/fb")
+                        
+                        Folloeme(socialmediaImg: "icons8-instagram-48", socialmediaweb:"juliaann/instagram")
+                        
+                        Folloeme(socialmediaImg: "icons8-twitter-48", socialmediaweb:"juliaann/twitter")
+                    }
+                }
+                .padding(.horizontal,10)
+                .background(.yellow)
                 
             }
             if !prop.isLandscape && !prop.isiPadPortrait {
@@ -246,7 +256,7 @@ struct MainView: View {
             }
             
             
-           else if prop.isLandscape && !prop.isiPadLandscape{
+            else if prop.isLandscape && !prop.isiPadLandscape{
                 ScrollView(.vertical, showsIndicators: false) {
                     LazyVGrid(columns: iphonelandscapeColumns, spacing: 20) {
                         ForEach(data, id: \.self) { number in
@@ -308,7 +318,7 @@ struct MainView: View {
                 }
                 .padding(.top, 20)
             }
-
+            
             Spacer()
             
             
